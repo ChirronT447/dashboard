@@ -25,7 +25,8 @@ public class RansomNote {
      * @param note an array of strings, each a word in the ransom note
      */
     static boolean checkMagazine(String[] magazine, String[] note) {
-        Arrays.sort(magazine); // To avoid timeout but 41ms vs 35ms when running locally (quicker when disabled)
+        // To avoid timeout but 41ms vs 35ms when running locally (quicker when disabled) but that's with smaller tests
+        Arrays.sort(magazine);
         Arrays.sort(note);
         List<String> magazineWords = new ArrayList<>(Arrays.asList(magazine));
         //Arrays.asList(magazine); is immutable
