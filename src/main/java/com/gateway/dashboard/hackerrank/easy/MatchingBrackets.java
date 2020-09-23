@@ -1,4 +1,4 @@
-package com.gateway.dashboard.interviews.easy;
+package com.gateway.dashboard.hackerrank.easy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class MatchingBrackets {
                 if(stack.pop() != openClosePair.get(ch)) {
                     return false;
                 }
-            } else if(openClosePair.values().contains(ch)) {
+            } else if(openClosePair.containsValue(ch)) {
                 stack.push(ch);
             }
         }

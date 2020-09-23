@@ -1,5 +1,6 @@
-package com.gateway.dashboard.interviews.easy;
+package com.gateway.dashboard.hackerrank.easy;
 
+import com.gateway.dashboard.hackerrank.easy.MatchingBrackets;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
