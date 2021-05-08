@@ -32,20 +32,6 @@ class StringCalculatorTest {
         Assertions.assertEquals(res.size(), 3);
     }
 
-    @Test
-    public void testFindTopIPAddress() {
-        String[] logFile = new String[]{
-                "10.185.248.71 - [09/Jan/2024:19:12:06 +0000] 808840 GET pathHere",
-                "10.185.552.51 - [09/Jan/2024:19:12:07 +0000] 808840 GET pathHere",
-                "10.111.422.51 - [09/Jan/2024:19:12:07 +0000] 808840 GET pathHere",
-                "10.412.222.51 - [09/Jan/2024:19:12:07 +0000] 808840 GET pathHere",
-                "10.185.552.51 - [09/Jan/2024:19:12:07 +0000] 808840 GET pathHere",
-                "10.185.248.71 - [09/Jan/2024:19:12:06 +0000] 808840 GET pathHere",
-                "10.185.552.51 - [09/Jan/2024:19:12:07 +0000] 808840 GET pathHere"
-        };
-
-        String topAddress = StringCalculator.findTopIPAddress(logFile);
-        Assertions.assertEquals("10.185.552.51", topAddress);
-    }
+    // ----------------------------------------------------------------------------------
 
 }

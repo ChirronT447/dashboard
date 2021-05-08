@@ -57,9 +57,5 @@ public class StringCalculator {
 
     // ----------------------------------------------------------------------------------
 
-    public static String findTopIPAddress(String[] lines) {
-        return "10.185.552.51";
-    }
-
 
 }
