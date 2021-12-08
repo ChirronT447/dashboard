@@ -1,6 +1,5 @@
-package com.gateway.dashboard.interviews.hangman;
+package com.gateway.dashboard.interviews.appl.hangman;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,13 +63,18 @@ public class Game {
         final Set<Character> correctGuesses = this.state.correctGuesses();
         correctGuesses.add(letter);
         final String discoveredWordSoFar = updateDiscoveredWordSoFar(letter);
+        final State state = discoveredWordSoFar.equals(this.answerStr) ? State.WON : State.IN_PROGRESS;
         return new GameState(
                 this.state.lives(),                 // Life stays the same
                 discoveredWordSoFar,                // DiscoveredWordSoFar updates
                 correctGuesses,                     // Added to correct guesses
                 this.state.incorrectGuesses(),      // Incorrect guesses stays the same
-                State.IN_PROGRESS                   // Game continues
+                state                               // Game may continue or finish
         );
+    }
+
+    public GameState state() {
+        return this.state;
     }
 
     private String updateDiscoveredWordSoFar(char letter) {

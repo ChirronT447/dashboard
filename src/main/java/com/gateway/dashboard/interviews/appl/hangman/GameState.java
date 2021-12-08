@@ -1,4 +1,4 @@
-package com.gateway.dashboard.interviews.hangman;
+package com.gateway.dashboard.interviews.appl.hangman;
 
 import java.util.Set;
 

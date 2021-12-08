@@ -1,8 +1,9 @@
-package com.gateway.dashboard.interviews.hangman;
+package com.gateway.dashboard.interviews.appl.hangman;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameTest {
 
@@ -11,32 +12,42 @@ class GameTest {
     @Test
     void startGame() {
         System.out.println(game.startGame("test"));
+        assertEquals(game.state().state(), State.IN_PROGRESS);
+        assertEquals(game.state().lives(), 8);
     }
 
     @Test
     void makeCorrectGuess() {
         System.out.println(game.startGame("tests"));
         System.out.println(game.makeAGuess('s'));
+        assertEquals(game.state().state(), State.IN_PROGRESS);
+        assertEquals(game.state().lives(), 8);
     }
 
     @Test
-    void makeSeveralCorrectGuesses() {
+    void makeTheSameGuess() {
         System.out.println(game.startGame("tests"));
         System.out.println(game.makeAGuess('s'));
         System.out.println(game.makeAGuess('s'));
         System.out.println(game.makeAGuess('s'));
+        assertEquals(game.state().state(), State.IN_PROGRESS);
+        assertEquals(game.state().lives(), 8);
     }
 
     @Test
     void makeAnIncorrectGuess() {
         System.out.println(game.startGame("tests"));
         System.out.println(game.makeAGuess('x'));
+        assertEquals(game.state().state(), State.IN_PROGRESS);
+        assertEquals(game.state().lives(), 7);
     }
 
     @Test
-    void makeAnInvalidGuess() {
+    void makeAQuestionableGuess() {
         System.out.println(game.startGame("tests"));
         System.out.println(game.makeAGuess(' '));
+        assertEquals(game.state().state(), State.IN_PROGRESS);
+        assertEquals(game.state().lives(), 7);
     }
 
     @Test
@@ -45,6 +56,7 @@ class GameTest {
         System.out.println(game.makeAGuess('t'));
         System.out.println(game.makeAGuess('e'));
         System.out.println(game.makeAGuess('s'));
+        assertEquals(game.state().state(), State.WON);
     }
 
     @Test
@@ -58,5 +70,6 @@ class GameTest {
         System.out.println(game.makeAGuess('b'));
         System.out.println(game.makeAGuess('m'));
         System.out.println(game.makeAGuess('n'));
+        assertEquals(game.state().state(), State.LOSS);
     }
 }
