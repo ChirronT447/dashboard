@@ -2,16 +2,18 @@ package com.gateway.dashboard.tree;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.Assert;
 
-class TreeTest {
+public class TreeTest {
 
     @BeforeAll
-    void setup() {
+    public static void setup() {
         TreeNode node = new TreeNode();
     }
 
     @Test
-    void invertTree() {
+    public void invertTree() {
+        Assert.isTrue(true);
     }
 
 

@@ -57,5 +57,9 @@ public class StringCalculator {
 
     // ----------------------------------------------------------------------------------
 
-
+    public Function<String, Integer> exampleFun(String s) {
+        return x -> s.length();
+    }
+    Function<String, Integer> tst = exampleFun("abc");
+    Integer result = tst.andThen(x -> x + 4).apply("abcd");
 }

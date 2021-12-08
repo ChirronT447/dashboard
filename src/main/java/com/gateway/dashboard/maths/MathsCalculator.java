@@ -50,6 +50,13 @@ public class MathsCalculator {
         return new int[]{numerator, denominator};
     }
 
+    /**
+     * Add two fractions eg.
+     * [2 / 3] + [1 / 2] = [7 / 6]
+     * @param fraction1
+     * @param fraction2
+     * @return
+     */
     public static int[] addFractions(int[] fraction1, int[] fraction2) {
         // Check not null, check not empty etc etc.
         final int bottomLeft    = fraction1[1]; // 1
@@ -71,7 +78,9 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
-    // dot product of two vector array.
+    /**
+     * Calculate dot product of two vector array.
+     */
     public static int dotProduct(int[] vectA, int[] vectB) {
         // Assert not null && length is equal
         int vectLength = vectA.length;
@@ -87,6 +96,13 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    /**
+     * Starting from data[index] follow each element to the index it points to.
+     * Continue until you find a cycle.
+     * @param data
+     * @param index
+     * @return
+     */
     public static int countCycles(int[] data, int index) {
         int count = 0;
         while(data[index] >= 0) {
