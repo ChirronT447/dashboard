@@ -62,4 +62,21 @@ public class StringCalculator {
     }
     Function<String, Integer> tst = exampleFun("abc");
     Integer result = tst.andThen(x -> x + 4).apply("abcd");
+
+    // ----------------------------------------------------------------------------------
+
+    public static String cd(String path) {
+        final Stack<String> stack = new Stack<>();
+        final String[] dir = path.split("/");
+        stack.push(dir[0]);
+        for(int i = 1; i < dir.length; i++) {
+            switch (dir[i]) {
+                case "":
+                case ".": continue;
+                case "..": stack.pop(); break;
+                default: stack.push(dir[i]);
+            }
+        }
+        return stack.stream().map(elem -> "/" + elem).collect(Collectors.joining());
+    }
 }

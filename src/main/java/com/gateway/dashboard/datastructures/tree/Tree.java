@@ -1,34 +1,34 @@
-package com.gateway.dashboard.tree;
+package com.gateway.dashboard.datastructures.tree;
 
 import java.util.Random;
 
 public class Tree {
 
-    public TreeNode invertTree(TreeNode root) {
+    public Node invertTree(Node root) {
         if(root==null){
             return root;
         }
 
         // Recursively invert the left
-        TreeNode left = root.getLeft();
+        Node left = root.getLeft();
         invertTree(left);
 
         // Recursively invert the right
-        TreeNode right = root.getRight();
+        Node right = root.getRight();
         invertTree(right);
 
         // Invert/Swap left and right on this node
-        TreeNode t = left;
+        Node t = left;
         root.setLeft(right);
         root.setRight(t);
 
         return root;
     }
 
-    public TreeNode generateRandomTree() {
+    public Node generateRandomTree() {
         Random random = new Random();
         random.nextBoolean();
-        return new TreeNode();
+        return new Node();
     }
 
 }

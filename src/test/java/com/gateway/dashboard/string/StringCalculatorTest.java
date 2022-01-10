@@ -1,5 +1,6 @@
 package com.gateway.dashboard.string;
 
+import com.gateway.dashboard.maths.MathsCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,5 +34,12 @@ class StringCalculatorTest {
     }
 
     // ----------------------------------------------------------------------------------
+
+    @Test
+    public void testCD() {
+        System.out.println(
+                StringCalculator.cd("/home/dir/test/directory/../second/./../directory")
+        );
+    }
 
 }

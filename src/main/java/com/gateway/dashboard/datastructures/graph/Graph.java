@@ -1,11 +1,11 @@
-package com.gateway.dashboard.graph;
+package com.gateway.dashboard.datastructures.graph;
 
 import java.util.*;
 
 /**
  * The graph represents an undirected graph
  */
-final class Graph<T> implements Iterable<T> {
+public final class Graph<T> implements Iterable<T> {
 
     /*
      * A map from the nodeId to outgoing edge.

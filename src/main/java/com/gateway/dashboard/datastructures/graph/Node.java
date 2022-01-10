@@ -1,4 +1,4 @@
-package com.gateway.dashboard.graph;
+package com.gateway.dashboard.datastructures.graph;
 
 /**
  * where n is the next node on the path,

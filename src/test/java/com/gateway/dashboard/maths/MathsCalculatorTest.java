@@ -1,9 +1,12 @@
 package com.gateway.dashboard.maths;
 
+import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
+import org.assertj.core.api.IntegerAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -89,6 +92,15 @@ class MathsCalculatorTest {
 
     // ----------------------------------------------------------------------------------
 
-
+    @Test
+    public void testMergeOverlappingIntervals() {
+        Pair arr[] = new Pair[4];
+        arr[0] = new Pair(6, 8);
+        arr[1] = new Pair(1, 9);
+        arr[2] = new Pair(2, 4);
+        arr[3] = new Pair(4, 7);
+        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        Assertions.assertNotNull(res);
+    }
 
 }

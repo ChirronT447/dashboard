@@ -1,5 +1,8 @@
 package com.gateway.dashboard.graph;
 
+import com.gateway.dashboard.datastructures.graph.AStar;
+import com.gateway.dashboard.datastructures.graph.Graph;
+import com.gateway.dashboard.datastructures.graph.Heuristic;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

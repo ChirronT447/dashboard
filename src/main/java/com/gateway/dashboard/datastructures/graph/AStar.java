@@ -1,4 +1,4 @@
-package com.gateway.dashboard.graph;
+package com.gateway.dashboard.datastructures.graph;
 
 import java.util.*;
 

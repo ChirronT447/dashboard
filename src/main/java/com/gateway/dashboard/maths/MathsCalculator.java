@@ -1,5 +1,6 @@
 package com.gateway.dashboard.maths;
 
+import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
 import org.springframework.boot.actuate.endpoint.web.Link;
 import org.springframework.util.Assert;
 
@@ -169,5 +170,35 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    // Merge overlapping intervals
+    public static Stack mergeOverlappingIntervals(Pair<Integer, Integer>[] intervals) {
+        Stack<Pair<Integer, Integer>> stack = new Stack<>();
+        if(intervals.length <= 0) {
+            return stack;
+        }
+
+        // Sort intervals in increasing order
+        Arrays.sort(intervals, Comparator.comparingInt(Pair::getLow));
+
+        stack.push(intervals[0]); // Push the first interval
+        for(int i = 1; i < intervals.length; i++) {
+            Pair<Integer, Integer> top = stack.peek(); // Investigate the top one
+            if(top.getHigh() < intervals[i].getLow()) {
+                stack.push(intervals[i]);
+            } else if (top.getHigh() < intervals[i].getHigh()){
+                top.setHigh(intervals[i].getHigh());
+                stack.pop();
+                stack.push(top);
+            }
+        }
+
+        System.out.println("Merged intervals:");
+        while(!stack.isEmpty()) {
+            Pair<Integer, Integer> pop = stack.pop();
+            System.out.println("[" + pop.getLow() + "," + pop.getHigh() + "]");
+        }
+
+        return stack;
+    }
 
 }
