@@ -79,4 +79,7 @@ public class StringCalculator {
         }
         return stack.stream().map(elem -> "/" + elem).collect(Collectors.joining());
     }
+
+    // ----------------------------------------------------------------------------------
+
 }

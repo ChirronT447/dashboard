@@ -1,10 +1,12 @@
 package com.gateway.dashboard.maths;
 
 import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
+import com.gateway.dashboard.string.StringCalculator;
 import org.assertj.core.api.IntegerAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -102,5 +104,35 @@ class MathsCalculatorTest {
         Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
         Assertions.assertNotNull(res);
     }
+
+    // ----------------------------------------------------------------------------------
+
+    // Calculate what index in the input array can "see" sea level
+    // Input: [4, 3, 2, 3, 1] => Sea level is 0 here <=
+    // Result: [0, 3, 4]
+    @Test
+    public void testCalculateSeaView() {
+        int[] arr = new int[]{4, 3, 2, 3, 1};
+        List<Integer> res = MathsCalculator.calculateSeaView(arr);
+        Assertions.assertEquals(res, List.of(0, 3, 4));
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Find contiguous sequence summing to target. eg:
+    // ([1, 3, 1, 4, 23], 8) => True [3, 1, 4]
+    // ([1, 3, 1, 4, 23], 7) => False
+    @Test
+    public void testFindTargetInSequence() {
+        Assertions.assertTrue(
+                MathsCalculator.findTargetInSequence(new int[]{1, 3, 1, 4, 23}, 8)
+        );
+        Assertions.assertFalse(
+                MathsCalculator.findTargetInSequence(new int[]{1, 3, 1, 4, 23}, 7)
+        );
+    }
+
+    // ----------------------------------------------------------------------------------
+
 
 }

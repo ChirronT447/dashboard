@@ -201,4 +201,67 @@ public class MathsCalculator {
         return stack;
     }
 
+    // ----------------------------------------------------------------------------------
+
+    // Calculate what index in the input array can "see" sea level
+    // Input: [4, 3, 2, 3, 1] => Sea level is 0 here <=
+    // Result: [0, 3, 4]
+    public static List<Integer> calculateSeaView(int[] apartments) {
+        final List<Integer> result = new ArrayList<>();
+        if(apartments == null || apartments.length <= 0) {
+            return result;
+        }
+
+        int maxHeight = 0; // Starting at sea level
+        for(int i = apartments.length - 1; i >= 0; i--) {
+            if(apartments[i] > maxHeight) {
+                result.add(i);
+                maxHeight = apartments[i];
+            }
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Find contiguous sequence summing to target. eg:
+    // ([1, 3, 1, 4, 23], 8) => True [3, 1, 4]
+    // ([1, 3, 1, 4, 23], 7) => False
+    public static boolean findTargetInSequence(int[] sequence, final int target) {
+
+        int startIndex = 0;
+        int endIndex = 0;
+        int total = 0;
+        for (int num : sequence) {
+            total += num;
+            if (total >= target) {
+                break;
+            }
+            endIndex++;
+        }
+
+        if(total == target) {
+            return true;
+        } else {
+            while(endIndex != sequence.length) {
+                total -= sequence[startIndex]; // Shorten the window
+                startIndex++;
+                if(total == target) {
+                    return true;
+                }
+                total += sequence[endIndex]; // Widen the window
+                endIndex++;
+                if(total == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+
 }
