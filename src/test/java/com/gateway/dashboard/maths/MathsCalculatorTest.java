@@ -134,5 +134,65 @@ class MathsCalculatorTest {
 
     // ----------------------------------------------------------------------------------
 
+    @Test
+    public void testTwoSum() {
+        // Input: nums = [2,7,11,15], target = 9
+        // Output: [0,1]
+        // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+        Assertions.assertArrayEquals(
+                new int[]{0, 1},
+                MathsCalculator.twoSum(new int[]{2,7,11,15}, 9)
+        );
+
+        // Input: nums = [3,2,4], target = 6
+        // Output: [1,2]
+        Assertions.assertArrayEquals(
+                new int[]{1, 2},
+                MathsCalculator.twoSum(new int[]{3, 2, 4}, 6)
+        );
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testAddTwoNumbersZero() {
+        // Input: l1 = [0], l2 = [0]
+        // Output: [0]
+        Assertions.assertEquals(
+                MathsCalculator.buildLinkedList(0, 0),
+                MathsCalculator.addTwoNumbers(
+                        MathsCalculator.buildLinkedList(0, 0),
+                        MathsCalculator.buildLinkedList(0, 0)
+                )
+        );
+    }
+
+    @Test
+    public void testAddTwoNumbers() {
+        // Input: l1 = [2,4,3], l2 = [5,6,4]
+        // Output: [7,0,8]
+        // Explanation: 342 + 465 = 807.
+        Assertions.assertEquals(
+            MathsCalculator.buildLinkedList(0, 7,0,8),
+            MathsCalculator.addTwoNumbers(
+                    MathsCalculator.buildLinkedList(0, 2,4,3),
+                    MathsCalculator.buildLinkedList(0, 5,6,4)
+            )
+        );
+    }
+
+    @Test
+    void testAddTwoNumbersOverflow() {
+        //        l2 = [9,9,9,9]
+        // Input: l1 = [9,9,9,9,9,9,9],
+        // Output:     [8,9,9,9,0,0,0,1]
+        Assertions.assertEquals(
+                MathsCalculator.buildLinkedList(0,  8,9,9,9,0,0,0,1),
+                MathsCalculator.addTwoNumbers(
+                        MathsCalculator.buildLinkedList(0, 9,9,9,9,9,9,9),
+                        MathsCalculator.buildLinkedList(0, 9,9,9,9)
+                )
+        );
+    }
 
 }

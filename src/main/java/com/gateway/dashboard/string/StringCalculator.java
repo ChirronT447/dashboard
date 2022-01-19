@@ -82,4 +82,27 @@ public class StringCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    // Leetcode 3) https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    // Given a string s, find the length of the longest substring without repeating characters.
+    public static int lengthOfLongestSubstring(String s) {
+        int lengthOfLongestSubstring = 0;
+        int substring = 0;
+        Set<String> letterSet = new HashSet<>();
+        for(String letter : s.split("")) {
+            if (!letterSet.contains(letter)) {
+                System.out.print(letter + ", ");
+                letterSet.add(letter);
+                substring++;
+                if (substring > lengthOfLongestSubstring) {
+                    lengthOfLongestSubstring = substring;
+                }
+            } else {
+                System.out.println("");
+                letterSet.clear();
+                substring = 0;
+            }
+        }
+        return lengthOfLongestSubstring;
+    }
+
 }

@@ -263,5 +263,113 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    // Leetcode 1) https://leetcode.com/problems/two-sum/
+    // Given an array of integers and an integer target, return indices of the two numbers such
+    //  that they add up to target. You may assume that each input would have exactly one solution, and
+    //  you may not use the same element twice. You can return the answer in any order.
+    public static int[] twoSum(int[] nums, int target) {
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] + nums[i-1] == target) {
+                System.out.println("Found: [" + (i-1) + "," + i + "]");
+                return new int[]{i-1, i};
+            }
+        }
+        throw new IllegalArgumentException("Array does not contain two elements that sum to target");
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Leetcode 2) https://leetcode.com/problems/add-two-numbers/
+    // You are given two non-empty linked lists representing two non-negative integers.
+    // The digits are stored in reverse order, and each of their nodes contains a single digit.
+    // Add the two numbers and return the sum as a linked list.
+    //
+    // You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+    final static class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        @Override
+        public String toString() {
+          return "Node: " + val;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ListNode listNode = (ListNode) o;
+            return val == listNode.val && Objects.equals(next, listNode.next);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(val, next);
+        }
+    }
+
+    public static ListNode buildLinkedList(int index, int...nums) {
+        if(index < nums.length) {
+            return new ListNode(nums[index], buildLinkedList(index + 1, nums));
+        } else {
+            return null;
+        }
+    }
+
+    // Easier to add as the digits are in reverse order
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode();
+        addNumbersRecursively(result, l1, l2);
+        return result;
+    }
+
+    private static ListNode addNumbersRecursively(ListNode sum, ListNode l1, ListNode l2) {
+        ListNode nextNode = new ListNode();
+        System.out.println(l1 + " - " + l2);
+
+        if (l1 != null && l2 != null) { // If we have two numbers, sum them (+ any overflow)
+            sum.val += l1.val + l2.val;
+            while(sum.val >= 10) { // if there's an overflow; take the remainder, add to the next node
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            } // Continue if we have at least one node, if we have none we can stop
+            if (l1.next != null || l2.next != null) {
+                sum.next = nextNode;
+                return addNumbersRecursively(nextNode, l1.next, l2.next);
+            }
+        }
+
+        if (l1 == null && l2 != null) { // If we've run out of L1 but have some L2
+            sum.val += l2.val;
+            while(sum.val >= 10) {
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            }
+            sum.next = nextNode;
+            return addNumbersRecursively(nextNode, null, l2.next);
+        }
+
+        if (l1 != null && l2 == null){ // If we're run out of L2 but have some L1
+            sum.val += l1.val;
+            while(sum.val >= 10) {
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            }
+            sum.next = nextNode;
+            return addNumbersRecursively(nextNode, l1.next, null);
+        }
+
+        System.out.println("Done... ");
+        return sum;
+    }
+
+    // ----------------------------------------------------------------------------------
+
 
 }
