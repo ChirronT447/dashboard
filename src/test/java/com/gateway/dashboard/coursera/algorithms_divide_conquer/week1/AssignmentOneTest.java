@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AssignmentOneTestTwosum {
+class AssignmentOneTest {
 
     public static final UnaryOperator<String> STRIP = String::strip;
     public static final UnaryOperator<String> UPPER = String::toUpperCase;
