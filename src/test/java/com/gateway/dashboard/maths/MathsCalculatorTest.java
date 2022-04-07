@@ -105,6 +105,16 @@ class MathsCalculatorTest {
         Assertions.assertNotNull(res);
     }
 
+    @Test
+    public void testMergeOverlappingIntervalsMultiple() {
+        Pair arr[] = new Pair[3];
+        arr[0] = new Pair(6, 8);
+        arr[1] = new Pair(1, 3);
+        arr[2] = new Pair(2, 4);
+        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        Assertions.assertNotNull(res);
+    }
+
     // ----------------------------------------------------------------------------------
 
     // Calculate what index in the input array can "see" sea level
@@ -195,4 +205,18 @@ class MathsCalculatorTest {
         );
     }
 
+    // -------------------------------------------------------------------
+
+    @Test
+    void testCountIslands() {
+        int[][] M = {
+                {1, 1, 0, 0, 0},
+                {0, 1, 0, 0, 1},
+                {1, 0, 0, 1, 1},
+                {0, 0, 0, 0, 0},
+                {1, 0, 1, 0, 1}
+        };
+
+        System.out.println("Number of islands is: " + MathsCalculator.countIslands(M));
+    }
 }

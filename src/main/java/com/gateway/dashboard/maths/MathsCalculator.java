@@ -1,12 +1,9 @@
 package com.gateway.dashboard.maths;
 
 import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
-import org.springframework.boot.actuate.endpoint.web.Link;
 import org.springframework.util.Assert;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class MathsCalculator {
 
@@ -371,5 +368,38 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    public static int countIslands(int[][] map) {
+        final int ROW = map.length;
+        final int COL = map[0].length;
+        int count = 0;
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                if (map[i][j] == 1) {
+                    count++; // Island discovered
+                    System.out.println("\nIsland found at: (" + i + "," + j + ")");
+                    System.out.print("\tExploring: ");
+                    visit(map, i, j, ROW, COL);
+                }
+            }
+        }
+        return count;
+    }
+
+    private static void visit(int[][] map, int i, int j, int ROW, int COL) {
+        System.out.print("{" + i + "," + j + "} ");
+        map[i][j] = 0; // Mark as visited
+        depthFirstSearch(map, i + 1, j, ROW, COL); // Look right
+        depthFirstSearch(map, i - 1, j, ROW, COL); // Look left
+        depthFirstSearch(map, i, j + 1, ROW, COL); // Look up
+        depthFirstSearch(map, i, j - 1, ROW, COL); // Look down
+    }
+
+    static void depthFirstSearch(int[][] map, int i, int j, int ROW, int COL) {
+        if (i >= 0 && i <= (ROW - 1) && // Base condition
+            j >= 0 && j <= (COL - 1) && map[i][j] == 1) {
+            // Must be within the matrix & land to visit
+            visit(map, i, j, ROW, COL);
+        }
+    }
 
 }
