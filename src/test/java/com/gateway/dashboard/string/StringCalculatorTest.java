@@ -1,11 +1,9 @@
 package com.gateway.dashboard.string;
 
-import com.gateway.dashboard.maths.MathsCalculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 class StringCalculatorTest {
@@ -64,6 +62,21 @@ class StringCalculatorTest {
         // Explanation: The answer is "wke", with the length of 3.
         // Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
         Assertions.assertEquals(3, StringCalculator.lengthOfLongestSubstring("pwwkew"));
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testFindLargestPalindrome() {
+        // Input: s = "313551"
+        // Output: 531135
+        Assertions.assertEquals("531135", StringCalculator.findLargestPalindrome("313551"));
+
+        // No palindrome:
+        Assertions.assertEquals("", StringCalculator.findLargestPalindrome("123456789"));
+
+        // Blank string:
+        Assertions.assertEquals("", StringCalculator.findLargestPalindrome(""));
     }
 
 }

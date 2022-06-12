@@ -3,6 +3,7 @@ package com.gateway.dashboard.string;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StringCalculator {
@@ -103,6 +104,67 @@ public class StringCalculator {
             }
         }
         return lengthOfLongestSubstring;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    /**
+     * Input : 313551
+     * -> 113355
+     * Output : 531135
+     * Explanations : 531135 is the largest number which is a palindrome
+     * 135531, 315513 and other numbers can also be formed but we need the largest of all palindromes.
+     * @param number
+     * @return string
+     */
+    public static String findLargestPalindrome(String number) {
+
+        // Ignore null / blank strings:
+        if(number == null || number.length() == 0) {
+            System.out.println("findLargestPalindrome provided: " + number);
+            return "";
+        }
+
+        // Split the number up into a list of Characters: 313551 -> ['1','1','3','3','5','5']
+        // Count the number of each character: ['1','1','3','3','5','5'] -> {'1':2, '3':2, '5':2}
+        final Map<Character, Integer> characterCount = number.chars().sorted()
+                .mapToObj(integer -> (char) integer)
+                .collect(Collectors.groupingBy(x -> x, Collectors.summingInt(num -> 1))
+        );
+
+        // No palindrome possible:
+        if(characterCount.containsValue(1) && characterCount.values().stream().distinct().count() == 1) {
+            System.out.println("findLargestPalindrome no palindrome possible: " + number);
+            return "";
+        }
+
+        // Take the set of Characters, sort into a list: {3,1,5} -> ['1','3','5']
+        final List<Character> numbers = new ArrayList<>(characterCount.keySet().stream().sorted().toList());
+
+        // Working with characters for readability:
+        final Deque<Character> result = new LinkedList<>();
+
+        // Take the first number and add as many as we have to result:
+        final Character firstNumber = numbers.get(0);
+        IntStream.range(0, characterCount.get(numbers.get(0))).forEach(i -> result.add(firstNumber));
+        characterCount.remove(firstNumber);
+        numbers.remove(firstNumber);
+
+        // For each number, in order of smallest -> biggest:
+        for(Character num : numbers) {
+            int numberOfCharToAdd = characterCount.get(num) / 2;
+            System.out.println("We have " + numberOfCharToAdd * 2 + " '" + num + "' to add.");
+            while(numberOfCharToAdd-- != 0) {
+                result.push(num);
+                result.add(num);
+            }
+        }
+
+        System.out.println("Result: " + result);
+        return result.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
     }
 
 }
