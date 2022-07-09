@@ -75,6 +75,19 @@ class StringCalculatorTest {
         // No palindrome:
         Assertions.assertEquals("", StringCalculator.findLargestPalindrome("123456789"));
 
+        // No palindrome: single 6 - 6531135
+        Assertions.assertEquals("", StringCalculator.findLargestPalindrome("3135516"));
+
+        // No palindrome: single 4 - 5431135
+        Assertions.assertEquals("", StringCalculator.findLargestPalindrome("3135514"));
+
+        // No palindrome: single 4 and single 2 - 54321135
+        Assertions.assertEquals("", StringCalculator.findLargestPalindrome("31355142"));
+
+        // Input: s = "33551"
+        // Output: 53135
+        Assertions.assertEquals("53135", StringCalculator.findLargestPalindrome("33551"));
+
         // Blank string:
         Assertions.assertEquals("", StringCalculator.findLargestPalindrome(""));
     }
