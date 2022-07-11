@@ -219,4 +219,19 @@ class MathsCalculatorTest {
 
         System.out.println("Number of islands is: " + MathsCalculator.countIslands(M));
     }
+
+    // -------------------------------------------------------------------
+
+    @Test
+    void testRoundToNearestTen() {
+        Assertions.assertEquals(130, MathsCalculator.round(132));
+        Assertions.assertEquals(1330, MathsCalculator.round(1325));
+        Assertions.assertEquals(10, MathsCalculator.round(13));
+        Assertions.assertEquals(0, MathsCalculator.round(4));
+        Assertions.assertEquals(10, MathsCalculator.round(9));
+        Assertions.assertEquals(0, MathsCalculator.round(0));
+    }
+
+    // -------------------------------------------------------------------
+
 }

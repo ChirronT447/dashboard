@@ -4,6 +4,8 @@ import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair
 import org.springframework.util.Assert;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MathsCalculator {
 
@@ -401,5 +403,16 @@ public class MathsCalculator {
             visit(map, i, j, ROW, COL);
         }
     }
+
+    // ----------------------------------------------------------------------------------
+
+    static int round(int number) {
+        final int roundedDown = (number / 10) * 10; // Integer division removes the last digit, then we multiply up.
+        final int roundedUp = roundedDown + 10;     // Then calc the number rounded up by simply adding 10.
+        // Return the closest (rounding up if ==)
+        return (number - roundedDown >= roundedUp - number) ? roundedUp : roundedDown;
+    }
+
+    // ----------------------------------------------------------------------------------
 
 }

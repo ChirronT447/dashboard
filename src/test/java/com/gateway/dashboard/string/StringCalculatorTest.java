@@ -92,4 +92,40 @@ class StringCalculatorTest {
         Assertions.assertEquals("", StringCalculator.findLargestPalindrome(""));
     }
 
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testAreRotations() {
+        // "ABACD" + "ABACD" = "ABACDABACD"
+        // Since "CDABA" is a substring of this, "ABACD" and "CDABA" are rotations of each other.
+        Assertions.assertTrue(StringCalculator.areRotations("ABACD", "CDABA"));
+
+        // False due to different length
+        Assertions.assertFalse(StringCalculator.areRotations("ABACD", "CDABAC"));
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testIsNumber() {
+        Assertions.assertTrue(StringCalculator.isNumber("768"));
+
+        Assertions.assertFalse(StringCalculator.isNumber("768.99"));
+
+        Assertions.assertFalse(StringCalculator.isNumber("117B"));
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testAllCharactersSame() {
+        Assertions.assertTrue(StringCalculator.allCharactersSame("dddd"));
+
+        Assertions.assertFalse(StringCalculator.allCharactersSame("fffhfff"));
+
+        Assertions.assertFalse(StringCalculator.allCharactersSame(""));
+    }
+
+    // ----------------------------------------------------------------------------------
+
 }
