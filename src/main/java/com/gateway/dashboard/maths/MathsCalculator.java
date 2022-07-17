@@ -415,4 +415,19 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+//    static int calcMinDiff(final int[] from) {
+//        final int length = from.length;
+//        final int[] to = Arrays.copyOf(from, length);
+//        Arrays.sort(to);
+//
+//        // How to change 'from' into 'to'
+//        final int[] diff = new int[length];
+//        for(int i = 0; i < length; i++) {
+//            diff[i] = from[i] - to[i];
+//        }
+//
+//        Arrays.sort(diff);
+//        return diff[length - 1];
+//    }
+
 }

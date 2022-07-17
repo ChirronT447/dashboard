@@ -1,5 +1,6 @@
 package com.gateway.dashboard.string;
 
+import java.awt.image.ImageProducer;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -45,15 +46,13 @@ public class StringCalculator {
     // ----------------------------------------------------------------------------------
 
     public static Collection<Set<String>> groupAnagrams(String[] arr) {
-        Collection<Set<String>> results = Arrays.stream(arr).collect(Collectors.groupingBy(
+        return Arrays.stream(arr).collect(Collectors.groupingBy(
                 word -> { // Key:
                     char[] letters = word.toCharArray();
                     Arrays.sort(letters);
                     return new String(letters);
                 }, Collectors.toSet()
             )).values();
-
-        return results;
     }
 
     // ----------------------------------------------------------------------------------
@@ -200,5 +199,41 @@ public class StringCalculator {
     public static boolean allCharactersSame(String str) {
         return str != null && str.chars().distinct().count() == 1;
     }
+
+    // ----------------------------------------------------------------------------------
+
+    private static final Map<Character, Character> matchingBraces = Map.of(
+            '(', ')',
+            '[', ']',
+            '{', '}'
+    );
+
+    public static List<Boolean> checkBraces(final String[] bracesArray) {
+        List<Boolean> results = new ArrayList<>();
+        for(String braces : bracesArray) {
+            results.add(checkBraces(braces));
+        }
+        return results;
+    }
+
+    private static boolean checkBraces(final String braces) {
+        final Stack<Character> characterStack = new Stack<>();
+        if (braces!= null && braces.length() > 0) {
+            final char[] bracesArr = braces.toCharArray();
+            characterStack.push(bracesArr[0]);
+            for (int i = 1; i < bracesArr.length; i++) {
+                final Character character = matchingBraces.get(characterStack.peek());
+                if (character != null && character == bracesArr[i]) {
+                    characterStack.pop();
+                } else {
+                    characterStack.push(bracesArr[i]);
+                }
+            }
+        }
+        return characterStack.isEmpty();
+    }
+
+    // ----------------------------------------------------------------------------------
+
 
 }

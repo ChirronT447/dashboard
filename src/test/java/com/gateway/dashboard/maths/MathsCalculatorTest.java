@@ -234,4 +234,19 @@ class MathsCalculatorTest {
 
     // -------------------------------------------------------------------
 
+//    @Test
+//    void calcMinDiffTest() {
+//        Assertions.assertEquals(3,
+//                MathsCalculator.calcMinDiff(new int[]{5, 4, 3, 2, 8})
+//        );
+//
+//        Assertions.assertEquals(2,
+//                MathsCalculator.calcMinDiff(new int[]{4, 2, 4, 3, 10})
+//        );
+//
+//        Assertions.assertEquals(2,
+//                MathsCalculator.calcMinDiff(new int[]{9, 2, 4, 3, 6})
+//        );
+//    }
+
 }

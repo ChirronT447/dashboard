@@ -1,9 +1,11 @@
 package com.gateway.dashboard.string;
 
+import com.gateway.dashboard.hackerrank.medium.Anagram;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 class StringCalculatorTest {
@@ -127,5 +129,18 @@ class StringCalculatorTest {
     }
 
     // ----------------------------------------------------------------------------------
+
+    @Test
+    void testCheckBraces() {
+        Assertions.assertIterableEquals(
+                List.of(true, false, false, true, true),
+                StringCalculator.checkBraces(
+                        List.of("()", ")[]{{}})", "([{])", "([{}])", "").toArray(new String[0])
+                )
+        );
+    }
+
+    // ----------------------------------------------------------------------------------
+
 
 }
