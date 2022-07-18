@@ -230,10 +230,55 @@ public class StringCalculator {
                 }
             }
         }
-        return characterStack.isEmpty();
+       return characterStack.isEmpty();
     }
 
     // ----------------------------------------------------------------------------------
 
+
+    private static final Map<Character, Character> ANGLE_MAP = Map.of(
+            '<', '>'
+            // '>', '<'
+    );
+
+    /**
+     * Method which adds angle brackets to the beginning an end to ensure match.
+     * Brackets match if for every '<' there is a corresponding '>' after it
+     *               and for every '>' there is a corresponding '<' before it.
+     */
+    public static String angleMatching(String angles) {
+        // Using a stack to match angles up
+        final Stack<Character> angleStack = new Stack<>();
+        if(angles != null && angles.length() > 0) {
+            // Turn the string into a char array & push the first angle
+            final char[] angleArray = angles.toCharArray();
+            angleStack.push(angleArray[0]);
+            for(int i = 1; i < angles.length(); i++) {
+                // For every angle; peek at the stack and check if there's a match
+                final Character angle = angleStack.size() != 0 ?
+                        ANGLE_MAP.get(angleStack.peek()) : null;
+                if(angle != null && angle == angleArray[i]) {
+                    angleStack.pop(); // Pop if there's a match
+                } else {
+                    angleStack.push(angleArray[i]); // otherwise push
+                }
+            }
+
+            // Look through what's in the stack and add angles as required
+            StringBuilder builder = new StringBuilder(angles);
+            angleStack.forEach(angle -> {
+                if(angle == '<') {
+                    builder.append('>');
+                } else {
+                    builder.insert(0, '<');
+                }
+            });
+
+            // Return the new String
+            System.out.println("Before: " + angles + " After: " + builder);
+            return builder.toString();
+        }
+        return angles;
+    }
 
 }

@@ -142,5 +142,10 @@ class StringCalculatorTest {
 
     // ----------------------------------------------------------------------------------
 
+    @Test
+    void testAngleMatching() {
+        StringCalculator.angleMatching("><");
+        StringCalculator.angleMatching("<<>>>>><<<>>");
+    }
 
 }
