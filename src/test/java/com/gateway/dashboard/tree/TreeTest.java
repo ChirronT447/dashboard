@@ -1,5 +1,6 @@
 package com.gateway.dashboard.tree;
 
+import com.gateway.dashboard.datastructures.tree.Tree;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

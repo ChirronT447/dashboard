@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Tree {
 
-    static class Node {
+    public static class Node {
         private boolean visited = false;
         private final List<Node> childNodes = new ArrayList<>();
         public Node(List<Node> childNodes) {
