@@ -9,9 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IPLogScanner {
 
-    // 1) For each entry in the array
-    // 2) Take the IP by splitting on ' ' (first whitespace) [0]
-    // 3) Have an IP counter in a map and increment
+    /**
+     * Common Log Format
+     *      1) For each entry in the array
+     *      2) Take the IP by splitting on ' ' (first whitespace) [0]
+     *      3) Have an IP counter in a map and increment
+     * @param lines
+     * @return
+     */
     public static String findTopIPAddress(String[] lines) {
         Map<String, Integer> counter = new HashMap<>();
 

@@ -1,4 +1,4 @@
-package com.gateway.dashboard.tree;
+package com.gateway.dashboard.datastructures.tree;
 
 import java.util.*;
 

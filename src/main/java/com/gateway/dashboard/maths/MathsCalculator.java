@@ -1,11 +1,11 @@
 package com.gateway.dashboard.maths;
 
-import org.springframework.boot.actuate.endpoint.web.Link;
+import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
 import org.springframework.util.Assert;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MathsCalculator {
 
@@ -50,6 +50,13 @@ public class MathsCalculator {
         return new int[]{numerator, denominator};
     }
 
+    /**
+     * Add two fractions eg.
+     * [2 / 3] + [1 / 2] = [7 / 6]
+     * @param fraction1
+     * @param fraction2
+     * @return
+     */
     public static int[] addFractions(int[] fraction1, int[] fraction2) {
         // Check not null, check not empty etc etc.
         final int bottomLeft    = fraction1[1]; // 1
@@ -71,7 +78,9 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
-    // dot product of two vector array.
+    /**
+     * Calculate dot product of two vector array.
+     */
     public static int dotProduct(int[] vectA, int[] vectB) {
         // Assert not null && length is equal
         int vectLength = vectA.length;
@@ -87,6 +96,13 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    /**
+     * Starting from data[index] follow each element to the index it points to.
+     * Continue until you find a cycle.
+     * @param data
+     * @param index
+     * @return
+     */
     public static int countCycles(int[] data, int index) {
         int count = 0;
         while(data[index] >= 0) {
@@ -153,5 +169,265 @@ public class MathsCalculator {
 
     // ----------------------------------------------------------------------------------
 
+    // Merge overlapping intervals
+    public static Stack mergeOverlappingIntervals(Pair<Integer, Integer>[] intervals) {
+        Stack<Pair<Integer, Integer>> stack = new Stack<>();
+        if(intervals.length <= 0) {
+            return stack;
+        }
+
+        // Sort intervals in increasing order
+        Arrays.sort(intervals, Comparator.comparingInt(Pair::getLow));
+
+        stack.push(intervals[0]); // Push the first interval
+        for(int i = 1; i < intervals.length; i++) {
+            Pair<Integer, Integer> top = stack.peek(); // Investigate the top one
+            if(top.getHigh() < intervals[i].getLow()) {
+                stack.push(intervals[i]);
+            } else if (top.getHigh() < intervals[i].getHigh()){
+                top.setHigh(intervals[i].getHigh());
+                stack.pop();
+                stack.push(top);
+            }
+        }
+
+        System.out.println("Merged intervals:");
+        while(!stack.isEmpty()) {
+            Pair<Integer, Integer> pop = stack.pop();
+            System.out.println("[" + pop.getLow() + "," + pop.getHigh() + "]");
+        }
+
+        return stack;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Calculate what index in the input array can "see" sea level
+    // Input: [4, 3, 2, 3, 1] => Sea level is 0 here <=
+    // Result: [0, 3, 4]
+    public static List<Integer> calculateSeaView(int[] apartments) {
+        final List<Integer> result = new ArrayList<>();
+        if(apartments == null || apartments.length <= 0) {
+            return result;
+        }
+
+        int maxHeight = 0; // Starting at sea level
+        for(int i = apartments.length - 1; i >= 0; i--) {
+            if(apartments[i] > maxHeight) {
+                result.add(i);
+                maxHeight = apartments[i];
+            }
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Find contiguous sequence summing to target. eg:
+    // ([1, 3, 1, 4, 23], 8) => True [3, 1, 4]
+    // ([1, 3, 1, 4, 23], 7) => False
+    public static boolean findTargetInSequence(int[] sequence, final int target) {
+
+        int startIndex = 0;
+        int endIndex = 0;
+        int total = 0;
+        for (int num : sequence) {
+            total += num;
+            if (total >= target) {
+                break;
+            }
+            endIndex++;
+        }
+
+        if(total == target) {
+            return true;
+        } else {
+            while(endIndex != sequence.length) {
+                total -= sequence[startIndex]; // Shorten the window
+                startIndex++;
+                if(total == target) {
+                    return true;
+                }
+                total += sequence[endIndex]; // Widen the window
+                endIndex++;
+                if(total == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Leetcode 1) https://leetcode.com/problems/two-sum/
+    // Given an array of integers and an integer target, return indices of the two numbers such
+    //  that they add up to target. You may assume that each input would have exactly one solution, and
+    //  you may not use the same element twice. You can return the answer in any order.
+    public static int[] twoSum(int[] nums, int target) {
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] + nums[i-1] == target) {
+                System.out.println("Found: [" + (i-1) + "," + i + "]");
+                return new int[]{i-1, i};
+            }
+        }
+        throw new IllegalArgumentException("Array does not contain two elements that sum to target");
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Leetcode 2) https://leetcode.com/problems/add-two-numbers/
+    // You are given two non-empty linked lists representing two non-negative integers.
+    // The digits are stored in reverse order, and each of their nodes contains a single digit.
+    // Add the two numbers and return the sum as a linked list.
+    //
+    // You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+    final static class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        @Override
+        public String toString() {
+          return "Node: " + val;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ListNode listNode = (ListNode) o;
+            return val == listNode.val && Objects.equals(next, listNode.next);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(val, next);
+        }
+    }
+
+    public static ListNode buildLinkedList(int index, int...nums) {
+        if(index < nums.length) {
+            return new ListNode(nums[index], buildLinkedList(index + 1, nums));
+        } else {
+            return null;
+        }
+    }
+
+    // Easier to add as the digits are in reverse order
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode();
+        addNumbersRecursively(result, l1, l2);
+        return result;
+    }
+
+    private static ListNode addNumbersRecursively(ListNode sum, ListNode l1, ListNode l2) {
+        ListNode nextNode = new ListNode();
+        System.out.println(l1 + " - " + l2);
+
+        if (l1 != null && l2 != null) { // If we have two numbers, sum them (+ any overflow)
+            sum.val += l1.val + l2.val;
+            while(sum.val >= 10) { // if there's an overflow; take the remainder, add to the next node
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            } // Continue if we have at least one node, if we have none we can stop
+            if (l1.next != null || l2.next != null) {
+                sum.next = nextNode;
+                return addNumbersRecursively(nextNode, l1.next, l2.next);
+            }
+        }
+
+        if (l1 == null && l2 != null) { // If we've run out of L1 but have some L2
+            sum.val += l2.val;
+            while(sum.val >= 10) {
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            }
+            sum.next = nextNode;
+            return addNumbersRecursively(nextNode, null, l2.next);
+        }
+
+        if (l1 != null && l2 == null){ // If we're run out of L2 but have some L1
+            sum.val += l1.val;
+            while(sum.val >= 10) {
+                System.out.println("Overflow: " + sum.val);
+                sum.val = sum.val % 10;
+                nextNode.val++;
+            }
+            sum.next = nextNode;
+            return addNumbersRecursively(nextNode, l1.next, null);
+        }
+
+        System.out.println("Done... ");
+        return sum;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    public static int countIslands(int[][] map) {
+        final int ROW = map.length;
+        final int COL = map[0].length;
+        int count = 0;
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                if (map[i][j] == 1) {
+                    count++; // Island discovered
+                    System.out.println("\nIsland found at: (" + i + "," + j + ")");
+                    System.out.print("\tExploring: ");
+                    visit(map, i, j, ROW, COL);
+                }
+            }
+        }
+        return count;
+    }
+
+    private static void visit(int[][] map, int i, int j, int ROW, int COL) {
+        System.out.print("{" + i + "," + j + "} ");
+        map[i][j] = 0; // Mark as visited
+        depthFirstSearch(map, i + 1, j, ROW, COL); // Look right
+        depthFirstSearch(map, i - 1, j, ROW, COL); // Look left
+        depthFirstSearch(map, i, j + 1, ROW, COL); // Look up
+        depthFirstSearch(map, i, j - 1, ROW, COL); // Look down
+    }
+
+    static void depthFirstSearch(int[][] map, int i, int j, int ROW, int COL) {
+        if (i >= 0 && i <= (ROW - 1) && // Base condition
+            j >= 0 && j <= (COL - 1) && map[i][j] == 1) {
+            // Must be within the matrix & land to visit
+            visit(map, i, j, ROW, COL);
+        }
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    static int round(int number) {
+        final int roundedDown = (number / 10) * 10; // Integer division removes the last digit, then we multiply up.
+        final int roundedUp = roundedDown + 10;     // Then calc the number rounded up by simply adding 10.
+        // Return the closest (rounding up if ==)
+        return (number - roundedDown >= roundedUp - number) ? roundedUp : roundedDown;
+    }
+
+    // ----------------------------------------------------------------------------------
+
+//    static int calcMinDiff(final int[] from) {
+//        final int length = from.length;
+//        final int[] to = Arrays.copyOf(from, length);
+//        Arrays.sort(to);
+//
+//        // How to change 'from' into 'to'
+//        final int[] diff = new int[length];
+//        for(int i = 0; i < length; i++) {
+//            diff[i] = from[i] - to[i];
+//        }
+//
+//        Arrays.sort(diff);
+//        return diff[length - 1];
+//    }
 
 }

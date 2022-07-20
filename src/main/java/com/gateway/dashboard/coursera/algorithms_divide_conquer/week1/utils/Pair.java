@@ -1,30 +1,28 @@
 package com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils;
 
-import java.math.BigDecimal;
-
 public class Pair<T, T1> {
 
-    private BigDecimal high;
-    private BigDecimal low;
+    private T low;
+    private T1 high;
 
-    public Pair(BigDecimal high, BigDecimal low) {
-        this.high = high;
+    public Pair(T low, T1 high) {
         this.low = low;
+        this.high = high;
     }
 
-    public BigDecimal getHigh() {
+    public T1 getHigh() {
         return high;
     }
 
-    public void setHigh(BigDecimal high) {
+    public void setHigh(T1 high) {
         this.high = high;
     }
 
-    public BigDecimal getLow() {
+    public T getLow() {
         return low;
     }
 
-    public void setLow(BigDecimal low) {
+    public void setLow(T low) {
         this.low = low;
     }
 }

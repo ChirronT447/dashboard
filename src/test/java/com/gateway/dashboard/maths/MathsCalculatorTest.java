@@ -1,9 +1,14 @@
 package com.gateway.dashboard.maths;
 
+import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
+import com.gateway.dashboard.string.StringCalculator;
+import org.assertj.core.api.IntegerAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -89,6 +94,159 @@ class MathsCalculatorTest {
 
     // ----------------------------------------------------------------------------------
 
+    @Test
+    public void testMergeOverlappingIntervals() {
+        Pair arr[] = new Pair[4];
+        arr[0] = new Pair(6, 8);
+        arr[1] = new Pair(1, 9);
+        arr[2] = new Pair(2, 4);
+        arr[3] = new Pair(4, 7);
+        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        Assertions.assertNotNull(res);
+    }
 
+    @Test
+    public void testMergeOverlappingIntervalsMultiple() {
+        Pair arr[] = new Pair[3];
+        arr[0] = new Pair(6, 8);
+        arr[1] = new Pair(1, 3);
+        arr[2] = new Pair(2, 4);
+        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        Assertions.assertNotNull(res);
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Calculate what index in the input array can "see" sea level
+    // Input: [4, 3, 2, 3, 1] => Sea level is 0 here <=
+    // Result: [0, 3, 4]
+    @Test
+    public void testCalculateSeaView() {
+        int[] arr = new int[]{4, 3, 2, 3, 1};
+        List<Integer> res = MathsCalculator.calculateSeaView(arr);
+        Assertions.assertEquals(res, List.of(0, 3, 4));
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    // Find contiguous sequence summing to target. eg:
+    // ([1, 3, 1, 4, 23], 8) => True [3, 1, 4]
+    // ([1, 3, 1, 4, 23], 7) => False
+    @Test
+    public void testFindTargetInSequence() {
+        Assertions.assertTrue(
+                MathsCalculator.findTargetInSequence(new int[]{1, 3, 1, 4, 23}, 8)
+        );
+        Assertions.assertFalse(
+                MathsCalculator.findTargetInSequence(new int[]{1, 3, 1, 4, 23}, 7)
+        );
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    public void testTwoSum() {
+        // Input: nums = [2,7,11,15], target = 9
+        // Output: [0,1]
+        // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+        Assertions.assertArrayEquals(
+                new int[]{0, 1},
+                MathsCalculator.twoSum(new int[]{2,7,11,15}, 9)
+        );
+
+        // Input: nums = [3,2,4], target = 6
+        // Output: [1,2]
+        Assertions.assertArrayEquals(
+                new int[]{1, 2},
+                MathsCalculator.twoSum(new int[]{3, 2, 4}, 6)
+        );
+    }
+
+    // ----------------------------------------------------------------------------------
+
+    @Test
+    void testAddTwoNumbersZero() {
+        // Input: l1 = [0], l2 = [0]
+        // Output: [0]
+        Assertions.assertEquals(
+                MathsCalculator.buildLinkedList(0, 0),
+                MathsCalculator.addTwoNumbers(
+                        MathsCalculator.buildLinkedList(0, 0),
+                        MathsCalculator.buildLinkedList(0, 0)
+                )
+        );
+    }
+
+    @Test
+    public void testAddTwoNumbers() {
+        // Input: l1 = [2,4,3], l2 = [5,6,4]
+        // Output: [7,0,8]
+        // Explanation: 342 + 465 = 807.
+        Assertions.assertEquals(
+            MathsCalculator.buildLinkedList(0, 7,0,8),
+            MathsCalculator.addTwoNumbers(
+                    MathsCalculator.buildLinkedList(0, 2,4,3),
+                    MathsCalculator.buildLinkedList(0, 5,6,4)
+            )
+        );
+    }
+
+    @Test
+    void testAddTwoNumbersOverflow() {
+        //        l2 = [9,9,9,9]
+        // Input: l1 = [9,9,9,9,9,9,9],
+        // Output:     [8,9,9,9,0,0,0,1]
+        Assertions.assertEquals(
+                MathsCalculator.buildLinkedList(0,  8,9,9,9,0,0,0,1),
+                MathsCalculator.addTwoNumbers(
+                        MathsCalculator.buildLinkedList(0, 9,9,9,9,9,9,9),
+                        MathsCalculator.buildLinkedList(0, 9,9,9,9)
+                )
+        );
+    }
+
+    // -------------------------------------------------------------------
+
+    @Test
+    void testCountIslands() {
+        int[][] M = {
+                {1, 1, 0, 0, 0},
+                {0, 1, 0, 0, 1},
+                {1, 0, 0, 1, 1},
+                {0, 0, 0, 0, 0},
+                {1, 0, 1, 0, 1}
+        };
+
+        System.out.println("Number of islands is: " + MathsCalculator.countIslands(M));
+    }
+
+    // -------------------------------------------------------------------
+
+    @Test
+    void testRoundToNearestTen() {
+        Assertions.assertEquals(130, MathsCalculator.round(132));
+        Assertions.assertEquals(1330, MathsCalculator.round(1325));
+        Assertions.assertEquals(10, MathsCalculator.round(13));
+        Assertions.assertEquals(0, MathsCalculator.round(4));
+        Assertions.assertEquals(10, MathsCalculator.round(9));
+        Assertions.assertEquals(0, MathsCalculator.round(0));
+    }
+
+    // -------------------------------------------------------------------
+
+//    @Test
+//    void calcMinDiffTest() {
+//        Assertions.assertEquals(3,
+//                MathsCalculator.calcMinDiff(new int[]{5, 4, 3, 2, 8})
+//        );
+//
+//        Assertions.assertEquals(2,
+//                MathsCalculator.calcMinDiff(new int[]{4, 2, 4, 3, 10})
+//        );
+//
+//        Assertions.assertEquals(2,
+//                MathsCalculator.calcMinDiff(new int[]{9, 2, 4, 3, 6})
+//        );
+//    }
 
 }

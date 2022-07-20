@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.1.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'org.springframework.boot' version '2.5.2'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group = 'com.gateway'
@@ -15,6 +15,10 @@ configurations {
 	}
 }
 
+//tasks.withType(JavaCompile).each {
+//	it.options.compilerArgs.add('--enable-preview')
+//}
+
 repositories {
 	mavenCentral()
 }
@@ -22,8 +26,11 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.boot:spring-boot-autoconfigure'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'com.pi4j:pi4j-core:1.2'
+
+	implementation 'io.github.graphql-java:graphql-java-annotations:8.5'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -33,5 +40,20 @@ dependencies {
 }
 
 test {
+	// jvmArgs '--enable-preview'
 	useJUnitPlatform()
+}
+
+//jar {
+//	manifest {
+//		attributes(
+//				'Class-Path': configurations.runtimeClasspath.collect { it.getName() }.join(' '),
+//				'Main-Class': 'com.gateway.dashboard.DashboardApplication'
+//		)
+//	}
+//}
+
+// Executable jars can be built using the bootJar task. The task is automatically created when the java plugin is applied
+bootJar {
+	mainClass.set("DashboardApplication")
 }
