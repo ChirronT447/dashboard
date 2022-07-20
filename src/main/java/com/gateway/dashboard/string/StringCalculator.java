@@ -44,15 +44,13 @@ public class StringCalculator {
     // ----------------------------------------------------------------------------------
 
     public static Collection<Set<String>> groupAnagrams(String[] arr) {
-        Collection<Set<String>> results = Arrays.stream(arr).collect(Collectors.groupingBy(
+        return Arrays.stream(arr).collect(Collectors.groupingBy(
                 word -> { // Key:
                     char[] letters = word.toCharArray();
                     Arrays.sort(letters);
                     return new String(letters);
                 }, Collectors.toSet()
             )).values();
-
-        return results;
     }
 
     // ----------------------------------------------------------------------------------

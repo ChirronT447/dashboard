@@ -1,34 +1,35 @@
 package com.gateway.dashboard.tree;
 
-import java.util.Random;
+import java.util.*;
 
 public class Tree {
 
-    public TreeNode invertTree(TreeNode root) {
-        if(root==null){
-            return root;
+    static class Node {
+        private boolean visited = false;
+        private final List<Node> childNodes = new ArrayList<>();
+        public Node(List<Node> childNodes) {
+            if(childNodes != null) {
+                this.childNodes.addAll(childNodes);
+            }
         }
-
-        // Recursively invert the left
-        TreeNode left = root.getLeft();
-        invertTree(left);
-
-        // Recursively invert the right
-        TreeNode right = root.getRight();
-        invertTree(right);
-
-        // Invert/Swap left and right on this node
-        TreeNode t = left;
-        root.setLeft(right);
-        root.setRight(t);
-
-        return root;
+        public void visit() {
+            this.visited = true;
+        }
     }
 
-    public TreeNode generateRandomTree() {
-        Random random = new Random();
-        random.nextBoolean();
-        return new TreeNode();
+    public static boolean isTree(Node rootNode) {
+        final Queue<Node> nodeQueue = new ArrayDeque<>();
+        nodeQueue.add(rootNode);
+        while(!nodeQueue.isEmpty()) {
+            Node node = nodeQueue.remove();
+            if(node.visited) {
+                return false;
+            } else {
+                node.visit();
+            }
+            nodeQueue.addAll(node.childNodes);
+        }
+        return true;
     }
 
 }

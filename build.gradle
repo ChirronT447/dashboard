@@ -6,17 +6,13 @@ plugins {
 
 group = 'com.gateway'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '14'
+sourceCompatibility = '18'
 
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
-}
-
-tasks.withType(JavaCompile).each {
-	it.options.compilerArgs.add('--enable-preview')
 }
 
 repositories {
@@ -37,6 +33,5 @@ dependencies {
 }
 
 test {
-	jvmArgs '--enable-preview'
 	useJUnitPlatform()
 }
