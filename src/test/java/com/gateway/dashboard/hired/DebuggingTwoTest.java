@@ -23,4 +23,16 @@ class DebuggingTwoTest {
         Assertions.assertEquals(8, res);
     }
 
+    @Test
+    void testJobCalculator() {
+        // [[6, 7, 10], [2, 4, 11], [8, 12, 15]]
+        Assertions.assertEquals(15 ,
+                JobCalculator.calculate(new long[][]{{6, 7, 10}, {2, 4, 11}, {8, 12, 15}})
+        );
+//        // [[1, 5, 3], [2, 5, 4], [7, 9, 6]]
+//        Assertions.assertEquals(7 ,
+//                JobCalculator.calculate(new long[][]{{1, 5, 3}, {2, 5, 4}, {7, 9, 6}})
+//        );
+    }
+
 }

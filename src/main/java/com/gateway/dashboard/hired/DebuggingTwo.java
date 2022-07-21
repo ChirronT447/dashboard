@@ -62,39 +62,33 @@ class Job {
 }
 
     /**
-     * Input:
-     * jobValues: [[6, 7, 10], [2, 4, 11], [8, 12, 15]]
-     * Expected Output:
-     * 15
-     * Output:
-     * null
+     * Input: jobValues: [[6, 7, 10], [2, 4, 11], [8, 12, 15]]
+     * Expected Output: 15
+     * Output: null
      *
-     * Input:
-     * jobValues: [[1, 5, 3], [2, 5, 4], [7, 9, 6]]
-     * Expected Output:
-     * 7
-     * Output:
-     * null
+     * Input: jobValues: [[1, 5, 3], [2, 5, 4], [7, 9, 6]]
+     * Expected Output: 7
+     * Output: null
      */
-//    class Solution {
-//        public static long solution(long[][] jobValues) {
-//            Job[] jobs = new Job[jobValues.length];
-//            for (int i = 0; i < jobValues.length; i++) {
-//                long[] jobValue = jobValues[i];
-//                jobs[i] = new Job(jobValue);
-//            }
-//
-//            int timelineSize = jobs.length;
-//
-//            int[] cpuTimeline = new int[timelineSize];
-//            Arrays.fill(cpuTimeline, 0);
-//            for (Job job: jobs) {
-//                for (int i = job.start; i < job.end; i++) {
-//                    cpuTimeline[i] = job.load;
-//                }
-//            }
-//
-//            return Arrays.stream(cpuTimeline).reduce(0, (currentMax, next) -> Math.max(currentMax, next));
-//        }
-//    }
-//
+    class JobCalculator {
+        public static long calculate(long[][] jobValues) {
+            Job[] jobs = new Job[jobValues.length];
+            int timelineSize = 0;
+            for (int i = 0; i < jobValues.length; i++) {
+                long[] jobValue = jobValues[i];
+                jobs[i] = new Job(jobValue);
+                timelineSize = Math.max(timelineSize, jobs[i].end);
+            }
+
+            int[] cpuTimeline = new int[timelineSize];
+            Arrays.fill(cpuTimeline, 0);
+            for (Job job: jobs) {
+                for (int i = job.start; i < job.end; i++) {
+                    cpuTimeline[i] = job.load;
+                }
+            }
+
+            return Arrays.stream(cpuTimeline).reduce(0, Math::max);
+        }
+    }
+
