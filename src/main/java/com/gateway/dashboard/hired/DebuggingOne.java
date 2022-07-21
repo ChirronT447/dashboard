@@ -87,7 +87,7 @@ class VendingMachine {
 }
 
 
-class Maths {
+class DebuggingOne {
 
     /**
      * Given a set of unordered values; find the n-th largest multiple of k in the sequence

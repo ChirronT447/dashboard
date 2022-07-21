@@ -238,7 +238,6 @@ public class StringCalculator {
 
     private static final Map<Character, Character> ANGLE_MAP = Map.of(
             '<', '>'
-            // '>', '<'
     );
 
     /**
@@ -255,8 +254,7 @@ public class StringCalculator {
             angleStack.push(angleArray[0]);
             for(int i = 1; i < angles.length(); i++) {
                 // For every angle; peek at the stack and check if there's a match
-                final Character angle = angleStack.size() != 0 ?
-                        ANGLE_MAP.get(angleStack.peek()) : null;
+                final Character angle = angleStack.size() != 0 ? ANGLE_MAP.get(angleStack.peek()) : null;
                 if(angle != null && angle == angleArray[i]) {
                     angleStack.pop(); // Pop if there's a match
                 } else {
@@ -280,5 +278,9 @@ public class StringCalculator {
         }
         return angles;
     }
+
+    // ----------------------------------------------------------------------------------
+
+
 
 }

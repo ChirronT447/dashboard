@@ -3,9 +3,7 @@ package com.gateway.dashboard.hired;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SolutionTest {
+class DebuggingOneTest {
 
     @Test
     void solution() {
@@ -32,7 +30,7 @@ class SolutionTest {
         //                           /  3  1  4   2  /  5
         int[] inventory = new int[]{ 4, 9, 3, 12, 6, 4, 15};
         Assertions.assertThat(
-                Maths.findLargestMultiple(inventory, 4, 3)
+                DebuggingOne.findLargestMultiple(inventory, 4, 3)
         ).isEqualTo(12);
     }
 }
