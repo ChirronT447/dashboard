@@ -25,12 +25,12 @@ class DebuggingThreeTest {
     void testDebuggingThree_2() {
         Assertions.assertArrayEquals(
                 new long[][]{ {120, 4}, {720, 1}, {6, 0} },
-                DebuggingThree.factorial(new long[] {5, 6, 3})
+                Factorial.calculate(new long[] {5, 6, 3})
         );
 
         Assertions.assertArrayEquals(
                 new long[][]{ {1, 0}, {6, 2}, {120, 2} },
-                DebuggingThree.factorial(new long[] {1, 3, 5})
+                Factorial.calculate(new long[] {1, 3, 5})
         );
 
     }

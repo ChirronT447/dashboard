@@ -15,13 +15,14 @@ public class DebuggingThree {
             return profit;
         }
     }
+}
 
-    // ---------------------------------------------
+class Factorial {
 
-    private static HashMap<Integer, Integer> cache = new HashMap<>();
+    private static final HashMap<Integer, Integer> cache = new HashMap<>();
     private static Integer calculationsPerformed = 0;
 
-    public static long[][] factorial(long[] numbersToCalculate) {
+    public static long[][] calculate(long[] numbersToCalculate) {
         long[][] results = new long[numbersToCalculate.length][2];
         for (int i = 0; i < numbersToCalculate.length; i++) {
             Integer result = factorial((int)numbersToCalculate[i]);
@@ -49,5 +50,4 @@ public class DebuggingThree {
         calculationsPerformed++;
         return result;
     }
-
 }
