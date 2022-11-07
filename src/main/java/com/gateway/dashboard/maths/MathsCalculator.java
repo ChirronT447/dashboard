@@ -170,35 +170,29 @@ public class MathsCalculator {
     // ----------------------------------------------------------------------------------
 
     // Merge overlapping intervals
-    public static Stack mergeOverlappingIntervals(Pair<Integer, Integer>[] intervals) {
-        Stack<Pair<Integer, Integer>> stack = new Stack<>();
-        if(intervals.length <= 0) {
+    public static List<Interval> mergeOverlappingIntervals(Interval[] intervals) {
+        Stack<Interval> stack = new Stack<>();
+        if(intervals.length == 0) {
             return stack;
         }
 
         // Sort intervals in increasing order
-        Arrays.sort(intervals, Comparator.comparingInt(Pair::getLow));
+        Arrays.sort(intervals, Comparator.comparingInt(Interval::low));
 
         stack.push(intervals[0]); // Push the first interval
         for(int i = 1; i < intervals.length; i++) {
-            Pair<Integer, Integer> top = stack.peek(); // Investigate the top one
-            if(top.getHigh() < intervals[i].getLow()) {
+            Interval top = stack.peek(); // Investigate the top one
+            if(top.high() < intervals[i].low()) {
                 stack.push(intervals[i]);
-            } else if (top.getHigh() < intervals[i].getHigh()){
-                top.setHigh(intervals[i].getHigh());
+            } else if (top.high() < intervals[i].high()){
                 stack.pop();
-                stack.push(top);
+                stack.push(new Interval(top.low, intervals[i].high()));
             }
         }
-
-        System.out.println("Merged intervals:");
-        while(!stack.isEmpty()) {
-            Pair<Integer, Integer> pop = stack.pop();
-            System.out.println("[" + pop.getLow() + "," + pop.getHigh() + "]");
-        }
-
-        return stack;
+        return new ArrayList<>(stack);
     }
+
+    record Interval(int low, int high) {}
 
     // ----------------------------------------------------------------------------------
 

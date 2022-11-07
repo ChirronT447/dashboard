@@ -96,22 +96,22 @@ class MathsCalculatorTest {
 
     @Test
     public void testMergeOverlappingIntervals() {
-        Pair arr[] = new Pair[4];
-        arr[0] = new Pair(6, 8);
-        arr[1] = new Pair(1, 9);
-        arr[2] = new Pair(2, 4);
-        arr[3] = new Pair(4, 7);
-        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        MathsCalculator.Interval[] arr = new MathsCalculator.Interval[4];
+        arr[0] = new MathsCalculator.Interval(6, 8);
+        arr[1] = new MathsCalculator.Interval(1, 9);
+        arr[2] = new MathsCalculator.Interval(2, 4);
+        arr[3] = new MathsCalculator.Interval(4, 7);
+        List<MathsCalculator.Interval> res = MathsCalculator.mergeOverlappingIntervals(arr);
         Assertions.assertNotNull(res);
     }
 
     @Test
     public void testMergeOverlappingIntervalsMultiple() {
-        Pair arr[] = new Pair[3];
-        arr[0] = new Pair(6, 8);
-        arr[1] = new Pair(1, 3);
-        arr[2] = new Pair(2, 4);
-        Stack res = MathsCalculator.mergeOverlappingIntervals(arr);
+        MathsCalculator.Interval[] arr = new MathsCalculator.Interval[3];
+        arr[0] = new MathsCalculator.Interval(6, 8);
+        arr[1] = new MathsCalculator.Interval(1, 3);
+        arr[2] = new MathsCalculator.Interval(2, 4);
+        List<MathsCalculator.Interval> res = MathsCalculator.mergeOverlappingIntervals(arr);
         Assertions.assertNotNull(res);
     }
 
