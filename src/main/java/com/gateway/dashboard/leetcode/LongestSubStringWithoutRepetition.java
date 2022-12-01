@@ -7,7 +7,7 @@ import java.util.HashMap;
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
  * Given a string s, find the length of the longest substring without repeating characters.
  */
-public class LongestSubStrWithoutRepetition {
+public class LongestSubStringWithoutRepetition {
 
     // keep a hashmap which stores the characters in string as keys and their positions as values,
     // and keep two pointers which define the max substring. move the right pointer to scan through

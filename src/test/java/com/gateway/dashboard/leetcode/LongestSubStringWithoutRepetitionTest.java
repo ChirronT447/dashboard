@@ -3,9 +3,7 @@ package com.gateway.dashboard.leetcode;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class LongestSubStrWithoutRepetitionTest {
+class LongestSubStringWithoutRepetitionTest {
 
     @Test
     void lengthOfLongestSubstring() {
@@ -26,15 +24,15 @@ class LongestSubStrWithoutRepetitionTest {
         //Explanation: The answer is "wke", with the length of 3.
         //Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
         Assertions.assertThat(
-                LongestSubStrWithoutRepetition.lengthOfLongestSubstring("abcabcbb")
+                LongestSubStringWithoutRepetition.lengthOfLongestSubstring("abcabcbb")
         ).isEqualTo(3);
 
         Assertions.assertThat(
-                LongestSubStrWithoutRepetition.lengthOfLongestSubstring("bbbbb")
+                LongestSubStringWithoutRepetition.lengthOfLongestSubstring("bbbbb")
         ).isEqualTo(1);
 
         Assertions.assertThat(
-                LongestSubStrWithoutRepetition.lengthOfLongestSubstring("pwwkew")
+                LongestSubStringWithoutRepetition.lengthOfLongestSubstring("pwwkew")
         ).isEqualTo(3);
     }
 }
