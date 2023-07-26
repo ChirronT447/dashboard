@@ -28,9 +28,9 @@ public class NumberOfIslands {
 
         grid[i][j] = '0';
         clearRestOfLand(grid, i+1, j);
-        clearRestOfLand(grid, i-1, j);
+//        clearRestOfLand(grid, i-1, j);
         clearRestOfLand(grid, i, j+1);
-        clearRestOfLand(grid, i, j-1);
+//        clearRestOfLand(grid, i, j-1);
     }
 
 }
