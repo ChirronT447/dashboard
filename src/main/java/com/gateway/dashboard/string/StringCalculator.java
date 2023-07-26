@@ -1,11 +1,9 @@
 package com.gateway.dashboard.string;
 
-import java.awt.image.ImageProducer;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class StringCalculator {
 
@@ -28,7 +26,7 @@ public class StringCalculator {
 
     // ----------------------------------------------------------------------------------
 
-    // Find first non repeating calendar
+    // Find first non-repeating calendar
     public static char findFirst(String input) {
         // Build a map with a count:
         Map<Character, Integer> counts = new LinkedHashMap<>(input.length());
@@ -71,10 +69,9 @@ public class StringCalculator {
         stack.push(dir[0]);
         for(int i = 1; i < dir.length; i++) {
             switch (dir[i]) {
-                case "":
-                case ".": continue;
-                case "..": stack.pop(); break;
-                default: stack.push(dir[i]);
+                case "", "." -> {}
+                case ".." -> stack.pop();
+                default -> stack.push(dir[i]);
             }
         }
         return stack.stream().map(elem -> "/" + elem).collect(Collectors.joining());
@@ -97,7 +94,7 @@ public class StringCalculator {
                     lengthOfLongestSubstring = substring;
                 }
             } else {
-                System.out.println("");
+                System.out.println();
                 letterSet.clear();
                 substring = 0;
             }
@@ -119,7 +116,7 @@ public class StringCalculator {
     public static String findLargestPalindrome(String number) {
 
         // Ignore null / blank strings:
-        if (number == null || number.length() == 0) {
+        if (number == null || number.isEmpty()) {
             System.out.println("findLargestPalindrome provided: " + number);
             return "";
         }
@@ -218,7 +215,7 @@ public class StringCalculator {
 
     private static boolean checkBraces(final String braces) {
         final Stack<Character> characterStack = new Stack<>();
-        if (braces!= null && braces.length() > 0) {
+        if (braces!= null && !braces.isEmpty()) {
             final char[] bracesArr = braces.toCharArray();
             characterStack.push(bracesArr[0]);
             for (int i = 1; i < bracesArr.length; i++) {
@@ -248,13 +245,13 @@ public class StringCalculator {
     public static String angleMatching(String angles) {
         // Using a stack to match angles up
         final Stack<Character> angleStack = new Stack<>();
-        if(angles != null && angles.length() > 0) {
+        if(angles != null && !angles.isEmpty()) {
             // Turn the string into a char array & push the first angle
             final char[] angleArray = angles.toCharArray();
             angleStack.push(angleArray[0]);
             for(int i = 1; i < angles.length(); i++) {
                 // For every angle; peek at the stack and check if there's a match
-                final Character angle = angleStack.size() != 0 ? ANGLE_MAP.get(angleStack.peek()) : null;
+                final Character angle = !angleStack.isEmpty() ? ANGLE_MAP.get(angleStack.peek()) : null;
                 if(angle != null && angle == angleArray[i]) {
                     angleStack.pop(); // Pop if there's a match
                 } else {

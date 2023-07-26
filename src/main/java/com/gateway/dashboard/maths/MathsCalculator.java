@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class MathsCalculator {
 
     /**
-     * The greatest common divisor is useful for reducing fractions to be in lowest terms.
+     * The greatest common divisor is useful for reducing fractions to be in the lowest terms.
      * For example, gcd(42, 56) = 14
      * @param number1
      * @param number2
@@ -58,7 +58,7 @@ public class MathsCalculator {
      * @return
      */
     public static int[] addFractions(int[] fraction1, int[] fraction2) {
-        // Check not null, check not empty etc etc.
+        // Check not null, check not empty etc. etc.
         final int bottomLeft    = fraction1[1]; // 1
         final int bottomRight   = fraction2[1]; // 3
         final int topLeft       = fraction1[0]; // 1
@@ -201,7 +201,7 @@ public class MathsCalculator {
     // Result: [0, 3, 4]
     public static List<Integer> calculateSeaView(int[] apartments) {
         final List<Integer> result = new ArrayList<>();
-        if(apartments == null || apartments.length <= 0) {
+        if(apartments == null || apartments.length == 0) {
             return result;
         }
 
