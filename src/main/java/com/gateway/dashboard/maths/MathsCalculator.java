@@ -261,13 +261,15 @@ public class MathsCalculator {
     //  that they add up to target. You may assume that each input would have exactly one solution, and
     //  you may not use the same element twice. You can return the answer in any order.
     public static int[] twoSum(int[] nums, int target) {
-        for(int i = 1; i < nums.length; i++) {
-            if(nums[i] + nums[i-1] == target) {
-                System.out.println("Found: [" + (i-1) + "," + i + "]");
-                return new int[]{i-1, i};
+        final Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
             }
+            map.put(nums[i], i);
         }
-        throw new IllegalArgumentException("Array does not contain two elements that sum to target");
+        throw new IllegalArgumentException("No two sum solution");
     }
 
     // ----------------------------------------------------------------------------------
