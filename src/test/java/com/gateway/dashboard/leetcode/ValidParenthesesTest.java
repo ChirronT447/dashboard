@@ -12,5 +12,6 @@ class ValidParenthesesTest {
         Assertions.assertThat(ValidParentheses.isValid("()")).isTrue();
         Assertions.assertThat(ValidParentheses.isValid("()[]{}")).isTrue();
         Assertions.assertThat(ValidParentheses.isValid("(}")).isFalse();
+        Assertions.assertThat(ValidParentheses.isValid("((hjhj))")).isFalse();
     }
 }

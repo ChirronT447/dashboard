@@ -13,12 +13,12 @@ import java.util.Stack;
  */
 public class ValidParentheses {
 
-    public static boolean isValid(final String s) {
-        if(s != null && s.length() % 2 != 0) {
+    public static boolean isValid(final String str) {
+        if(str == null || str.length() % 2 != 0) {
             return false;
         }
         final Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
+        for (char c : str.toCharArray()) {
             if (c == '(')
                 stack.push(')');
             else if (c == '{')

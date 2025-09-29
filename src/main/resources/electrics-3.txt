@@ -1,0 +1,30 @@
+Sockets
+
+* Double Sockets: 27
+    * (Note: 2 of these are specified as a dark colour for the pantry)
+
+Switches & Spurs
+
+* 1 Gang Switch: 2
+* 2 Gang Switch: 4
+* 3 Gang Switch: 2
+* Fan Isolator Switch: 3
+* Switch Fused Spurs: 2
+
+Dimmers
+
+* 1 Gang Dimmer: 2
+* 2 Gang Dimmer: 3
+* 3 Gang Dimmer: 2
+
+Data & AV
+
+* Cat 6 Modules: 9
+* 2 Module Euro Data Plate: 5
+* Single Module Euro Data Plate: 1
+* Sat F Type Modules: 2
+
+Grid System
+
+* 3 Gang Grid Switch & Front Plate: 1
+* 2 Way Switch Modules for Grid: 3

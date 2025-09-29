@@ -1,11 +1,8 @@
 package com.gateway.dashboard.maths;
 
-import com.gateway.dashboard.coursera.algorithms_divide_conquer.week1.utils.Pair;
 import org.springframework.util.Assert;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MathsCalculator {
 
