@@ -44,7 +44,6 @@ public final class RateLimiter implements AutoCloseable {
 
     /**
      * Factory method to create a RateLimiter.
-     *
      * @param permits The number of permits allowed per time period.
      * @param period  The time period (e.g., Duration.ofSeconds(1)).
      * @return A new instance of RateLimiter.
@@ -56,7 +55,6 @@ public final class RateLimiter implements AutoCloseable {
     /**
      * Acquires a permit from the rate limiter, blocking until one is available.
      * This method is interruptible.
-     *
      * @throws InterruptedException if the current thread is interrupted while waiting.
      */
     public void acquire() throws InterruptedException {
@@ -65,7 +63,6 @@ public final class RateLimiter implements AutoCloseable {
 
     /**
      * Attempts to acquire a permit without blocking.
-     *
      * @return true if a permit was acquired, false otherwise.
      */
     public boolean tryAcquire() {
@@ -81,8 +78,7 @@ public final class RateLimiter implements AutoCloseable {
     }
 
     /**
-     * Shuts down the background replenishment thread.
-     * This should be called to ensure graceful application shutdown.
+     * Shuts down the background replenishment thread. This should be called to ensure graceful application shutdown.
      */
     @Override
     public void close() {
